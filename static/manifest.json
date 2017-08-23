@@ -1,6 +1,6 @@
 {
-  "name": "designsystem-workshop",
-  "short_name": "designsystem-workshop",
+  "name": "design-system-workshop",
+  "short_name": "design-system-workshop",
   "icons": [
     {
       "src": "/static/img/icons/android-chrome-192x192.png",
