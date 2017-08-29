@@ -2,7 +2,7 @@
   <div id="app">
     <section class="todoapp">
       <header class="header">
-        <h1>todos</h1>
+        <Title text="todos" />
         <input class="new-todo"
           autofocus autocomplete="off"
           placeholder="What needs to be done?"
@@ -10,8 +10,18 @@
           @keyup.enter="addTodo">
       </header>
       <section class="main" v-show="todos.length" v-cloak>
+        <!-- <Checkbox className="toggle-all" :modal="allDone"/> -->
         <input class="toggle-all" type="checkbox" v-model="allDone">
-        <ul class="todo-list">
+        <List 
+          class="todo-list" 
+          :data="filteredTodos"
+          :editedTodo="editedTodo"
+          @removeTodo="removeTodo" 
+          @editTodo="editTodo" 
+          @doneEdit="doneEdit" 
+        >
+        </List>
+        <!-- <ul class="todo-list">
           <li v-for="todo in filteredTodos"
             class="todo"
             :key="todo.id"
@@ -28,31 +38,45 @@
               @keyup.enter="doneEdit(todo)"
               @keyup.esc="cancelEdit(todo)">
           </li>
-        </ul>
+        </ul> -->
       </section>
       <footer class="footer" v-show="todos.length" v-cloak>
-        <span class="todo-count">
+        <TodoCount :remaining="remaining"/>
+        <!-- <span class="todo-count">
           <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
-        </span>
+        </span> -->
         <ul class="filters">
-          <li><a href="#/all" :class="{ selected: visibility == 'all' }">All</a></li>
-          <li><a href="#/active" :class="{ selected: visibility == 'active' }">Active</a></li>
-          <li><a href="#/completed" :class="{ selected: visibility == 'completed' }">Completed</a></li>
+          <li><Button @button-click="setFilter('all')" :selected="visibility==='all'">All</Button></li>
+          <li><Button @button-click="setFilter('active')" :selected="visibility==='active'">Active</Button></li>
+          <li><Button @button-click="setFilter('completed')" :selected="visibility==='completed'">Completed</Button></li>
+          <!-- <li><button @click="setFilter('all')" href="#/all" :class="{ selected: visibility == 'all' }">All</button></li>
+          <li><button @click="setFilter('active')" :class="{ selected: visibility == 'active' }">Active</button></li>
+          <li><button @click="setFilter('completed')" :class="{ selected: visibility == 'completed' }">Completed</button></li> -->
         </ul>
-        <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
+        <Button class="clear-completed" @button-click="removeCompleted" v-show="todos.length > remaining">Clear completed</Button>
+        <!-- <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
           Clear completed
-        </button>
+        </button> -->
       </footer>
     </section>
-    <footer class="info">
+    <Footer></Footer>
+    <!-- <footer class="info">
       <p>Double-click to edit a todo</p>
       <p>Written by <a href="http://evanyou.me">Evan You</a></p>
       <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
 <script>
+
+import Button from './components/inputs/Button/Button'
+import Checkbox from './components/inputs/Checkbox/Checkbox'
+import Footer from './components/content/Footer/Footer'
+import TodoCount from './components/content/TodoCount/TodoCount'
+import Title from './components/content/Title/Title'
+import List from './components/content/List/List'
+
 // localStorage persistence
 var STORAGE_KEY = 'todos-vuejs-2.0'
 var todoStorage = {
@@ -88,15 +112,22 @@ var filters = {
 
 export default {
   name: 'app',
+  components: {
+    Button,
+    Checkbox,
+    Footer,
+    List,
+    TodoCount,
+    Title
+  },
   data: function () {
     return {
       todos: todoStorage.fetch(),
       newTodo: '',
       editedTodo: null,
-      visibility: 'all'
+      visibility: 'active'
     }
   },
-  // props: ['visibility'],
   watch: {
     todos: {
       handler: function (todos) {
@@ -176,6 +207,10 @@ export default {
 
     removeCompleted: function () {
       this.todos = filters.active(this.todos)
+    },
+
+    setFilter: function (filter) {
+      this.visibility = filter
     }
   },
 
@@ -209,10 +244,6 @@ button {
 	font-family: inherit;
 	font-weight: inherit;
 	color: inherit;
-	-webkit-appearance: none;
-	appearance: none;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -223,8 +254,6 @@ body {
 	min-width: 230px;
 	max-width: 550px;
 	margin: 0 auto;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 	font-weight: 300;
 }
 
@@ -270,9 +299,6 @@ body {
 	font-weight: 100;
 	text-align: center;
 	color: rgba(175, 47, 47, 0.15);
-	-webkit-text-rendering: optimizeLegibility;
-	-moz-text-rendering: optimizeLegibility;
-	text-rendering: optimizeLegibility;
 }
 
 .new-todo,
@@ -290,8 +316,6 @@ body {
 	border: 1px solid #999;
 	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
 }
 
 .new-todo {
@@ -451,11 +475,6 @@ label[for='toggle-all'] {
 	left: 0;
 	height: 50px;
 	overflow: hidden;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
-	            0 8px 0 -3px #f6f6f6,
-	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
-	            0 16px 0 -6px #f6f6f6,
-	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }
 
 .todo-count {
@@ -480,7 +499,8 @@ label[for='toggle-all'] {
 	display: inline;
 }
 
-.filters li a {
+.filters li button {
+  display: inline;
 	color: inherit;
 	margin: 3px;
 	padding: 3px 7px;
@@ -489,11 +509,11 @@ label[for='toggle-all'] {
 	border-radius: 3px;
 }
 
-.filters li a:hover {
+.filters li button:hover {
 	border-color: rgba(175, 47, 47, 0.1);
 }
 
-.filters li a.selected {
+.filters li button.selected {
 	border-color: rgba(175, 47, 47, 0.2);
 }
 

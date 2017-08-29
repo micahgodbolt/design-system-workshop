@@ -1,22 +1,21 @@
 <template>
-    <button class="ds-button" @click="onClick"> 
-        <slot></slot> 
+    <button :class="{ selected: selected == true  }" class="ds-button" @click="btnClick()"> 
+        <slot></slot>
     </button>
 </template>
 
 <script>
   export default {
     name: 'Button',
+    props: ['selected'],
     methods: {
-      onClick () {
+      btnClick () {
+        this.$emit('button-click')
       }
     }
   }
 </script>
 
 <style lang="scss">
-$color: red;
-.ds-button {
-    background: $color;
-}
+
 </style>
