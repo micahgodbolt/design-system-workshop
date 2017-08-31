@@ -29,8 +29,7 @@ export default {
       this.$emit('doneEdit', todo)
     },
     cancelEdit: function (todo) {
-      this.editedTodo = null
-      todo.title = this.beforeEditCache
+      this.$emit('cancelEdit', todo)
     }
   },
   directives: {
