@@ -15,11 +15,17 @@
         <List 
           class="todo-list" 
           :data="filteredTodos"
-          :editedTodo="editedTodo"
-          @removeTodo="removeTodo" 
-          @editTodo="editTodo" 
-          @doneEdit="doneEdit" 
         >
+          <template slot="todo" scope='props'>
+            <TodoItem
+              :todo="props.todo"
+              :editedTodo="editedTodo"
+              @removeTodo="removeTodo" 
+              @editTodo="editTodo" 
+              @doneEdit="doneEdit"
+              @cancelEdit="cancelEdit"
+            />
+          </template>
         </List>
         <!-- <ul class="todo-list">
           <li v-for="todo in filteredTodos"
@@ -74,6 +80,7 @@ import Button from './components/inputs/Button/Button'
 import Checkbox from './components/inputs/Checkbox/Checkbox'
 import Footer from './components/content/Footer/Footer'
 import TodoCount from './components/content/TodoCount/TodoCount'
+import TodoItem from './components/content/TodoItem/TodoItem'
 import Title from './components/content/Title/Title'
 import List from './components/content/List/List'
 
@@ -118,6 +125,7 @@ export default {
     Footer,
     List,
     TodoCount,
+    TodoItem,
     Title
   },
   data: function () {
@@ -372,19 +380,19 @@ label[for='toggle-all'] {
 	border-bottom: none;
 }
 
-.todo-list li.editing {
+.todo-list .editing {
 	border-bottom: none;
 	padding: 0;
 }
 
-.todo-list li.editing .edit {
+.todo-list .editing .edit {
 	display: block;
 	width: 506px;
 	padding: 12px 16px;
 	margin: 0 0 0 43px;
 }
 
-.todo-list li.editing .view {
+.todo-list .editing .view {
 	display: none;
 }
 

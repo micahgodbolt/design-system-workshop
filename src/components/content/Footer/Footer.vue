@@ -1,14 +1,19 @@
 <template>
   <footer class="info">
     <p>Double-click to edit a todo</p>
-    <p>Written by <a href="http://evanyou.me">Evan You</a></p>
-    <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
+    <p>Written by <Link href='http://evanyou.me'>Evan You</Link></p>
+    <p>Part of <Link href='http://todomvc.com'>TodoMVC</Link></p>
   </footer>
 </template>
 
 <script>
-export default {
 
+import Link from '../../inputs/Link/Link'
+export default {
+  name: 'Footer',
+  components: {
+    Link
+  }
 }
 </script>
 
