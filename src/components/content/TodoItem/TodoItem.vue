@@ -1,7 +1,11 @@
 <template>
   <div :class="{ completed: todo.completed, editing: todo == editedTodo }">
     <div class="view">
-      <input class="toggle" type="checkbox" v-model="todo.completed">
+     <Checkbox class="toggle"
+        :value="todo.completed"
+        @change="(value) => { todo.completed = value }"
+      />
+      <!-- <input class="toggle" type="checkbox" v-model="todo.completed"> -->
       <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
       <button class="destroy" @click="removeTodo(todo)"></button>
     </div>
@@ -25,11 +29,12 @@
 <script>
 
 import Textfield from '../../inputs/Textfield/Textfield'
+import Checkbox from '../../inputs/Checkbox/Checkbox'
 
 export default {
   name: 'TodoItem',
   props: ['todo', 'editedTodo'],
-  components: { Textfield },
+  components: { Textfield, Checkbox },
   methods: {
     removeTodo: function (todo) {
       this.$emit('removeTodo', todo)

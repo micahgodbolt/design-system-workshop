@@ -18,12 +18,14 @@
           @keyup.enter="addTodo"> -->
       </header>
       <section class="main" v-show="todos.length" v-cloak>
-        <!-- <Checkbox className="toggle-all" :modal="allDone"/> -->
-        <input class="toggle-all"
-          type="checkbox"
+        <Checkbox class="toggle-all"
           :value="allDone"
-          v-on:change="allDone = $event.target.value == 'true'? true : false"
-        >
+          @change="(value) => { allDone = value }"
+        />
+        <!-- <input class="toggle-all"
+          type="checkbox"
+          v-model="allDone"
+        > -->
         <List
           class="todo-list"
           :data="filteredTodos"
