@@ -5,19 +5,31 @@
       <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
       <button class="destroy" @click="removeTodo(todo)"></button>
     </div>
-    <input class="edit" type="text"
+    <Textfield class="edit"
+      v-todo-focus="todo == editedTodo"
+      :value="todo.title"
+      @input="(value) => { todo.title = value }"
+      @blur="doneEdit(todo)"
+      @enter="doneEdit(todo)"
+      @esc="cancelEdit(todo)"
+     />
+    <!-- <input class="edit" type="text"
       v-model="todo.title"
       v-todo-focus="todo == editedTodo"
       @blur="doneEdit(todo)"
       @keyup.enter="doneEdit(todo)"
-      @keyup.esc="cancelEdit(todo)">
+      @keyup.esc="cancelEdit(todo)"> -->
   </div>
 </template>
 
 <script>
+
+import Textfield from '../../inputs/Textfield/Textfield'
+
 export default {
   name: 'TodoItem',
   props: ['todo', 'editedTodo'],
+  components: { Textfield },
   methods: {
     removeTodo: function (todo) {
       this.$emit('removeTodo', todo)

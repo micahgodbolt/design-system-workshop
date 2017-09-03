@@ -4,8 +4,10 @@
       <header class="header">
         <Title text="todos" />
           <Textfield
+            class="new-todo"
+            placeholder="What needs to be done?"
             :value="newTodo"
-            @input="(value) => { newtodo = value }"
+            @input="(value) => { newTodo = value }"
             @enter="addTodo"
           />
         <!-- <input class="new-todo"

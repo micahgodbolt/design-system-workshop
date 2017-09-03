@@ -1,16 +1,20 @@
 <template>
-  <input class="new-todo"
+  <input
     autofocus
     autocomplete="off"
-    placeholder="What needs to be done?"
+    :value="value"
+    :placeholder="placeholder"
     v-on:change="$emit(`input`, $event.target.value)"
     @keyup.enter="$emit(`enter`)"
+    @keyup.esc="$emit(`esc`)"
+    @blur="$emit(`blur`)"
   >
 </template>
 
 <script>
 export default {
-  name: 'TextField'
+  name: 'TextField',
+  props: ['value', 'placeholder']
 }
 </script>
 
