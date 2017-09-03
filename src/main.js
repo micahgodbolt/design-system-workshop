@@ -5,6 +5,8 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+Vue.prototype.$log = console.log.bind(console)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

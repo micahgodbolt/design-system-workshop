@@ -3,25 +3,35 @@
     <section class="todoapp">
       <header class="header">
         <Title text="todos" />
-        <input class="new-todo"
+          <Textfield
+            :value="newTodo"
+            @input="(value) => { newtodo = value }"
+            @enter="addTodo"
+          />
+        <!-- <input class="new-todo"
           autofocus autocomplete="off"
           placeholder="What needs to be done?"
-          v-model="newTodo"
-          @keyup.enter="addTodo">
+          :value="newTodo"
+          v-on:change="newTodo = $event.target.value"
+          @keyup.enter="addTodo"> -->
       </header>
       <section class="main" v-show="todos.length" v-cloak>
         <!-- <Checkbox className="toggle-all" :modal="allDone"/> -->
-        <input class="toggle-all" type="checkbox" v-model="allDone">
-        <List 
-          class="todo-list" 
+        <input class="toggle-all"
+          type="checkbox"
+          :value="allDone"
+          v-on:change="allDone = $event.target.value == 'true'? true : false"
+        >
+        <List
+          class="todo-list"
           :data="filteredTodos"
         >
           <template slot="todo" scope='props'>
             <TodoItem
               :todo="props.todo"
               :editedTodo="editedTodo"
-              @removeTodo="removeTodo" 
-              @editTodo="editTodo" 
+              @removeTodo="removeTodo"
+              @editTodo="editTodo"
               @doneEdit="doneEdit"
               @cancelEdit="cancelEdit"
             />
@@ -78,6 +88,7 @@
 
 import Button from './components/inputs/Button/Button'
 import Checkbox from './components/inputs/Checkbox/Checkbox'
+import Textfield from './components/inputs/Textfield/Textfield'
 import Footer from './components/content/Footer/Footer'
 import TodoCount from './components/content/TodoCount/TodoCount'
 import TodoItem from './components/content/TodoItem/TodoItem'
@@ -124,6 +135,7 @@ export default {
     Checkbox,
     Footer,
     List,
+    Textfield,
     TodoCount,
     TodoItem,
     Title
