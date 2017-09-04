@@ -1,7 +1,7 @@
 <template>
-  <span class="todo-count">
+  <span class="TodoCount todo-count">
     <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
-  </span>  
+  </span>
 </template>
 
 <script>
@@ -16,5 +16,8 @@ export default {
 </script>
 
 <style>
-
+  .TodoCount {
+    color: #777;
+    font-weight: 300;
+  }
 </style>

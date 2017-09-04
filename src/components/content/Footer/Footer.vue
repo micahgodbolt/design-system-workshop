@@ -1,22 +1,29 @@
 <template>
-  <footer class="info">
-    <p>Double-click to edit a todo</p>
-    <p>Written by <Link href='http://evanyou.me'>Evan You</Link></p>
-    <p>Part of <Link href='http://todomvc.com'>TodoMVC</Link></p>
-  </footer>
+<footer class="footer">
+  <slot></slot>
+</footer>
 </template>
 
 <script>
-
-import Link from '../../inputs/Link/Link'
 export default {
-  name: 'Footer',
-  components: {
-    Link
-  }
+
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.footer {
+  padding: 10px 15px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+}
 
+.footer > *:first-child {
+  flex-basis: 150px;
+}
+
+.footer > *:nth-child(n+2) {
+  flex-grow: 1;
+}
 </style>
+

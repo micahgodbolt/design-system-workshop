@@ -1,11 +1,10 @@
 <template>
-  <ul class="todo-list">
-    <li v-for="todo in data"
-      class="todo"
-      :key="todo.id">
+  <ul :data-direction="direction" class="list">
+    <li :data-border="border" v-for="item in data"
+      :key="item.id">
 
-      <slot name="todo"
-        :todo="todo"
+      <slot name="item"
+        :item="item"
       >
       </slot>
     </li>
@@ -14,10 +13,22 @@
 
 <script>
 export default {
-  props: ['data']
+  props: ['data', 'direction', 'border']
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+  .list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    &[data-direction="horizontal"] {
+      flex-direction: row;
+    }
+  }
+  [data-border="true"] {
+    border-bottom: 1px solid #ededed;
+  }
 </style>

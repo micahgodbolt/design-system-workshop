@@ -1,5 +1,5 @@
 <template>
-  <a :href='href'>
+  <a class="Link" :href='href'>
     <slot></slot>
   </a>
 </template>
@@ -11,6 +11,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.Link {
+  color: #bfbfbf;
+  text-decoration: none;
+  font-weight: 400;
+  &:hover {
+    text-decoration: underline;
+  }
+}
 </style>

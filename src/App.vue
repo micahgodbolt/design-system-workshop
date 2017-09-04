@@ -1,15 +1,25 @@
 <template>
   <div id="app">
+    <Title text="todos" />
     <section class="todoapp">
       <header class="header">
-        <Title text="todos" />
-          <Textfield
-            class="new-todo"
-            placeholder="What needs to be done?"
-            :value="newTodo"
-            @input="(value) => { newTodo = value }"
-            @enter="addTodo"
-          />
+        <Checkbox class="toggle-all"
+          type="toggleAll"
+          :value="allDone"
+          @change="(value) => { allDone = value }"
+        />
+        <Textfield
+          class="new-todo"
+          type="new"
+          placeholder="What needs to be done?"
+          :value="newTodo"
+          @input="(value) => { newTodo = value }"
+          @enter="addTodo"
+        />
+        <!-- <input class="toggle-all"
+          type="checkbox"
+          v-model="allDone"
+        > -->
         <!-- <input class="new-todo"
           autofocus autocomplete="off"
           placeholder="What needs to be done?"
@@ -18,21 +28,15 @@
           @keyup.enter="addTodo"> -->
       </header>
       <section class="main" v-show="todos.length" v-cloak>
-        <Checkbox class="toggle-all"
-          :value="allDone"
-          @change="(value) => { allDone = value }"
-        />
-        <!-- <input class="toggle-all"
-          type="checkbox"
-          v-model="allDone"
-        > -->
         <List
+          direction="vertical"
+          border="true"
           class="todo-list"
           :data="filteredTodos"
         >
-          <template slot="todo" scope='props'>
-            <TodoItem
-              :todo="props.todo"
+          <template slot="item" scope='props'>
+            <TodoItem class="todo"
+              :todo="props.item"
               :editedTodo="editedTodo"
               @removeTodo="removeTodo"
               @editTodo="editTodo"
@@ -60,26 +64,40 @@
           </li>
         </ul> -->
       </section>
-      <footer class="footer" v-show="todos.length" v-cloak>
+      <Footer v-show="todos.length" v-cloak>
         <TodoCount :remaining="remaining"/>
-        <!-- <span class="todo-count">
+        <List
+          class="filters"
+          direction="horizontal"
+          :data="['all','active','completed']">
+
+          <template slot="item" scope='props'>
+            <Button type="filter" @click="setFilter(props.item)" :class="{ selected: visibility == props.item }" >{{props.item}}</Button>
+          </template>
+        </List>
+        <Button type="clear" @click="removeCompleted" v-show="todos.length > remaining">Clear completed</Button>
+      </Footer>
+      <!-- <footer class="footer" v-show="todos.length" v-cloak>
+
+        <span class="todo-count">
           <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
-        </span> -->
+        </span>
+
         <ul class="filters">
-          <li><Button @button-click="setFilter('all')" :selected="visibility==='all'">All</Button></li>
-          <li><Button @button-click="setFilter('active')" :selected="visibility==='active'">Active</Button></li>
-          <li><Button @button-click="setFilter('completed')" :selected="visibility==='completed'">Completed</Button></li>
-          <!-- <li><button @click="setFilter('all')" href="#/all" :class="{ selected: visibility == 'all' }">All</button></li>
+          <li><Button @click="setFilter('all')" :class="{ selected: visibility == 'all' }">All</Button></li>
+          <li><Button @click="setFilter('active')" :class="{ selected: visibility == 'active' }">Active</Button></li>
+          <li><Button @click="setFilter('completed')" :class="{ selected: visibility == 'completed' }">Completed</Button></li>
+
+          <li><button @click="setFilter('all')" href="#/all" :class="{ selected: visibility == 'all' }">All</button></li>
           <li><button @click="setFilter('active')" :class="{ selected: visibility == 'active' }">Active</button></li>
-          <li><button @click="setFilter('completed')" :class="{ selected: visibility == 'completed' }">Completed</button></li> -->
+          <li><button @click="setFilter('completed')" :class="{ selected: visibility == 'completed' }">Completed</button></li>
         </ul>
-        <Button class="clear-completed" @button-click="removeCompleted" v-show="todos.length > remaining">Clear completed</Button>
-        <!-- <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
+        <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
           Clear completed
-        </button> -->
-      </footer>
+        </button>
+      </footer> -->
     </section>
-    <Footer></Footer>
+    <Info></Info>
     <!-- <footer class="info">
       <p>Double-click to edit a todo</p>
       <p>Written by <a href="http://evanyou.me">Evan You</a></p>
@@ -93,11 +111,12 @@
 import Button from './components/inputs/Button/Button'
 import Checkbox from './components/inputs/Checkbox/Checkbox'
 import Textfield from './components/inputs/Textfield/Textfield'
-import Footer from './components/content/Footer/Footer'
+import Info from './components/content/Info/Info'
 import TodoCount from './components/content/TodoCount/TodoCount'
 import TodoItem from './components/content/TodoItem/TodoItem'
 import Title from './components/content/Title/Title'
 import List from './components/content/List/List'
+import Footer from './components/content/Footer/Footer'
 
 // localStorage persistence
 var STORAGE_KEY = 'todos-vuejs-2.0'
@@ -137,12 +156,13 @@ export default {
   components: {
     Button,
     Checkbox,
-    Footer,
+    Info,
     List,
     Textfield,
     TodoCount,
     TodoItem,
-    Title
+    Title,
+    Footer
   },
   data: function () {
     return {
@@ -254,357 +274,316 @@ export default {
 <style>
 html,
 body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-button {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	background: none;
-	font-size: 100%;
-	vertical-align: baseline;
-	font-family: inherit;
-	font-weight: inherit;
-	color: inherit;
-}
+/* button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+} */
 
 body {
-	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	line-height: 1.4em;
-	background: #f5f5f5;
-	color: #4d4d4d;
-	min-width: 230px;
-	max-width: 550px;
-	margin: 0 auto;
-	font-weight: 300;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  line-height: 1.4em;
+  background: #f5f5f5;
+  color: #4d4d4d;
+  min-width: 230px;
+  max-width: 550px;
+  margin: 0 auto;
+  font-weight: 300;
 }
 
 :focus {
-	outline: 0;
+  outline: 0;
 }
 
 .hidden {
-	display: none;
+  display: none;
 }
 
 .todoapp {
-	background: #fff;
-	margin: 130px 0 40px 0;
-	position: relative;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
+  background: white;
+  margin: 70px 0 40px 0;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+              0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
-.todoapp input::-webkit-input-placeholder {
-	font-style: italic;
-	font-weight: 300;
-	color: #e6e6e6;
+/* .todoapp input::-webkit-input-placeholder {
+  font-style: italic;
+  font-weight: 300;
+  color: #e6e6e6;
 }
 
 .todoapp input::-moz-placeholder {
-	font-style: italic;
-	font-weight: 300;
-	color: #e6e6e6;
+  font-style: italic;
+  font-weight: 300;
+  color: #e6e6e6;
 }
 
 .todoapp input::input-placeholder {
-	font-style: italic;
-	font-weight: 300;
-	color: #e6e6e6;
-}
+  font-style: italic;
+  font-weight: 300;
+  color: #e6e6e6;
+} */
 
-.todoapp h1 {
-	position: absolute;
-	top: -155px;
-	width: 100%;
-	font-size: 100px;
-	font-weight: 100;
-	text-align: center;
-	color: rgba(175, 47, 47, 0.15);
-}
+/* h1 {
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  color: rgba(175, 47, 47, 0.15);
+} */
 
-.new-todo,
+/* .new-todo,
 .edit {
-	position: relative;
-	margin: 0;
-	width: 100%;
-	font-size: 24px;
-	font-family: inherit;
-	font-weight: inherit;
-	line-height: 1.4em;
-	border: 0;
-	color: inherit;
-	padding: 6px;
-	border: 1px solid #999;
-	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-	box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: 1.4em;
+  border: 0;
+  color: inherit;
+  padding: 6px;
+  border: 1px solid #999;
+} */
+
+/* .new-todo {
+  padding: 16px 16px 16px 60px;
+  border: none;
+  background: rgba(0, 0, 0, 0.003);
+} */
+
+
+.header {
+  display: flex;
+  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
 }
 
-.new-todo {
-	padding: 16px 16px 16px 60px;
-	border: none;
-	background: rgba(0, 0, 0, 0.003);
-	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
-}
-
-.main {
-	position: relative;
-	z-index: 2;
-	border-top: 1px solid #e6e6e6;
-}
-
-label[for='toggle-all'] {
-	display: none;
-}
-
-.toggle-all {
-	position: absolute;
-	top: -55px;
-	left: -12px;
-	width: 60px;
-	height: 34px;
-	text-align: center;
-	border: none; /* Mobile Safari */
+/* .toggle-all {
+  display: flex;
+  align-content: center;
+  flex-basis: 40px;
 }
 
 .toggle-all:before {
-	content: '❯';
-	font-size: 22px;
-	color: #e6e6e6;
-	padding: 10px 27px 10px 27px;
+  content: '❯';
+  font-size: 22px;
+  line-height: 28px;
+  color: #e6e6e6;
+  display: block;
+  transform: rotate(90deg);
+} */
+
+/* .toggle-all:checked:before {
+  color: #737373;
+} */
+
+.main {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid #e6e6e6;
 }
 
-.toggle-all:checked:before {
-	color: #737373;
-}
+/* .todo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+} */
 
-.todo-list {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
+/* .todo-list li {
+  position: relative;
+  font-size: 24px;
+  border-bottom: 1px solid #ededed;
+} */
 
-.todo-list li {
-	position: relative;
-	font-size: 24px;
-	border-bottom: 1px solid #ededed;
-}
+/* .todo-list .editing {
+  border-bottom: none;
+  padding: 0;
+} */
 
-.todo-list li:last-child {
-	border-bottom: none;
-}
+/* .todo-list .editing .edit {
+  display: block;
+  width: 506px;
+  padding: 12px 16px;
+  margin: 0 0 0 43px;
+} */
 
-.todo-list .editing {
-	border-bottom: none;
-	padding: 0;
-}
+/* .todo-list .editing .view {
+  display: none;
+} */
 
-.todo-list .editing .edit {
-	display: block;
-	width: 506px;
-	padding: 12px 16px;
-	margin: 0 0 0 43px;
-}
+/* .todo-list li .toggle {
+  text-align: center;
+  width: 40px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+} */
 
-.todo-list .editing .view {
-	display: none;
-}
+/* .todo-list li .toggle:after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+} */
 
-.todo-list li .toggle {
-	text-align: center;
-	width: 40px;
-	/* auto, since non-WebKit browsers doesn't support input styling */
-	height: auto;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin: auto 0;
-	border: none; /* Mobile Safari */
-	-webkit-appearance: none;
-	appearance: none;
-}
+/* .todo-list li .toggle:checked:after {
+  content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+} */
 
-.todo-list li .toggle:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
-}
+/* .todo-list li label {
+  word-break: break-all;
+  padding: 15px 60px 15px 15px;
+  margin-left: 45px;
+  display: block;
+  line-height: 1.2;
+  transition: color 0.4s;
+} */
 
-.todo-list li .toggle:checked:after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
-}
+/* .todo-list li.completed label {
+  color: #d9d9d9;
+  text-decoration: line-through;
+} */
 
-.todo-list li label {
-	word-break: break-all;
-	padding: 15px 60px 15px 15px;
-	margin-left: 45px;
-	display: block;
-	line-height: 1.2;
-	transition: color 0.4s;
-}
-
-.todo-list li.completed label {
-	color: #d9d9d9;
-	text-decoration: line-through;
-}
-
-.todo-list li .destroy {
-	display: none;
-	position: absolute;
-	top: 0;
-	right: 10px;
-	bottom: 0;
-	width: 40px;
-	height: 40px;
-	margin: auto 0;
-	font-size: 30px;
-	color: #cc9a9a;
-	margin-bottom: 11px;
-	transition: color 0.2s ease-out;
+/* .todo-list li .destroy {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  width: 40px;
+  height: 40px;
+  margin: auto 0;
+  font-size: 30px;
+  color: #cc9a9a;
+  margin-bottom: 11px;
+  transition: color 0.2s ease-out;
 }
 
 .todo-list li .destroy:hover {
-	color: #af5b5e;
+  color: #af5b5e;
 }
 
 .todo-list li .destroy:after {
-	content: '×';
+  content: '×';
 }
 
 .todo-list li:hover .destroy {
-	display: block;
+  display: block;
 }
 
 .todo-list li .edit {
-	display: none;
+  display: none;
 }
 
 .todo-list li.editing:last-child {
-	margin-bottom: -1px;
+  margin-bottom: -1px;
+} */
+
+/* .footer {
+  padding: 10px 15px;
+  height: 20px;
+  display: flex;
+  align-items: center;
 }
 
-.footer {
-	color: #777;
-	padding: 10px 15px;
-	height: 20px;
-	text-align: center;
-	border-top: 1px solid #e6e6e6;
+.footer > *:first-child {
+  flex-basis: 150px;
 }
 
-.footer:before {
-	content: '';
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	height: 50px;
-	overflow: hidden;
-}
+.footer > *:nth-child(n+2) {
+  flex-grow: 1;
+} */
 
-.todo-count {
-	float: left;
-	text-align: left;
-}
-
-.todo-count strong {
-	font-weight: 300;
+/* .todo-count {
+  flex-basis: 150px;
 }
 
 .filters {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	position: absolute;
-	right: 0;
-	left: 0;
-}
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-grow: 1;
+} */
 
-.filters li {
-	display: inline;
-}
+/* .filters li button {
+  color: inherit;
+  margin: 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+} */
 
-.filters li button {
-  display: inline;
-	color: inherit;
-	margin: 3px;
-	padding: 3px 7px;
-	text-decoration: none;
-	border: 1px solid transparent;
-	border-radius: 3px;
-}
-
-.filters li button:hover {
-	border-color: rgba(175, 47, 47, 0.1);
+/* .filters li button:hover {
+  border-color: rgba(175, 47, 47, 0.1);
 }
 
 .filters li button.selected {
-	border-color: rgba(175, 47, 47, 0.2);
-}
+  border-color: rgba(175, 47, 47, 0.2);
+} */
 
-.clear-completed,
-html .clear-completed:active {
-	float: right;
-	position: relative;
-	line-height: 20px;
-	text-decoration: none;
-	cursor: pointer;
-}
+/* .clear-completed {
+  text-decoration: none;
+  cursor: pointer;
+} */
 
-.clear-completed:hover {
-	text-decoration: underline;
-}
+/* .clear-completed:hover {
+  text-decoration: underline;
+} */
 
-.info {
-	margin: 65px auto 0;
-	color: #bfbfbf;
-	font-size: 10px;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-	text-align: center;
+/* .info {
+  margin: 65px auto 0;
+  color: #bfbfbf;
+  font-size: 10px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-align: center;
 }
 
 .info p {
-	line-height: 1;
+  line-height: 1;
 }
 
 .info a {
-	color: inherit;
-	text-decoration: none;
-	font-weight: 400;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 400;
 }
 
 .info a:hover {
-	text-decoration: underline;
-}
+  text-decoration: underline;
+} */
 
 /*
-	Hack to remove background from Mobile Safari.
-	Can't use it globally since it destroys checkboxes in Firefox
+  Hack to remove background from Mobile Safari.
+  Can't use it globally since it destroys checkboxes in Firefox
 */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-	.toggle-all,
-	.todo-list li .toggle {
-		background: none;
-	}
+  .toggle-all,
+  .todo-list li .toggle {
+    background: none;
+  }
 
-	.todo-list li .toggle {
-		height: 40px;
-	}
+  /* .todo-list li .toggle {
+    height: 40px;
+  } */
 
-	.toggle-all {
-		-webkit-transform: rotate(90deg);
-		transform: rotate(90deg);
-		-webkit-appearance: none;
-		appearance: none;
-	}
+  .toggle-all {
+    -webkit-appearance: none;
+    appearance: none;
+  }
 }
 
-@media (max-width: 430px) {
-	.footer {
-		height: 50px;
-	}
-
-	.filters {
-		bottom: 10px;
-	}
-}
 </style>
