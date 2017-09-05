@@ -1,5 +1,5 @@
 <template>
-    <button :data-type="type" class="root" @click="$emit(`click`)">
+    <button :data-type="type" class="Button" @click="$emit(`click`)">
         <slot></slot>
     </button>
 </template>
@@ -12,7 +12,7 @@
 </script>
 
 <style lang="scss" scoped>
-  .root {
+  .Button {
     margin: 0;
     padding: 0;
     border: 0;
@@ -46,6 +46,7 @@
     }
   }
   [data-type='destroy'] {
+    user-select: none;
     padding: 0 20px;
     font-size: 30px;
     color: #cc9a9a;

@@ -13,17 +13,20 @@ export default {
 <style lang="scss" scoped>
 .footer {
   padding: 10px 15px;
-  height: 20px;
   display: flex;
   align-items: center;
-}
-
-.footer > *:first-child {
-  flex-basis: 150px;
-}
-
-.footer > *:nth-child(n+2) {
-  flex-grow: 1;
+  justify-content: space-between;
+  text-align: right;
+  & > * {
+    flex-basis: 0;
+    flex-grow: 1;
+    &:first-child {
+      text-align: left;
+    }
+    &:last-child {
+      text-align: right;
+    }
+  }
 }
 </style>
 

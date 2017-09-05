@@ -50,11 +50,8 @@ input::input-placeholder {
   color: inherit;
 }
 [data-type='edit'] {
-  width: 506px;
-  padding: 12px 16px;
-  margin: 0 0 0 43px;
-  border: 1px solid #999;
-  padding: 6px;
+  outline-offset: 3px;
+  outline: 1px solid rgba(175, 47, 47, 0.2);
 }
 [data-type='new'] {
   padding: 16px 16px 16px 16px;

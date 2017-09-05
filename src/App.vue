@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Title text="todos" />
+    <!-- <h1>todos</h1> -->
     <section class="todoapp">
       <header class="header">
         <Checkbox class="toggle-all"
@@ -64,7 +65,7 @@
           </li>
         </ul> -->
       </section>
-      <Footer v-show="todos.length" v-cloak>
+      <Nav v-show="todos.length" v-cloak>
         <TodoCount :remaining="remaining"/>
         <List
           class="filters"
@@ -75,8 +76,10 @@
             <Button type="filter" @click="setFilter(props.item)" :class="{ selected: visibility == props.item }" >{{props.item}}</Button>
           </template>
         </List>
-        <Button type="clear" @click="removeCompleted" v-show="todos.length > remaining">Clear completed</Button>
-      </Footer>
+        <div>
+          <Button type="clear" @click="removeCompleted" v-show="todos.length > remaining">Clear completed</Button>
+        </div>
+      </Nav>
       <!-- <footer class="footer" v-show="todos.length" v-cloak>
 
         <span class="todo-count">
@@ -84,11 +87,7 @@
         </span>
 
         <ul class="filters">
-          <li><Button @click="setFilter('all')" :class="{ selected: visibility == 'all' }">All</Button></li>
-          <li><Button @click="setFilter('active')" :class="{ selected: visibility == 'active' }">Active</Button></li>
-          <li><Button @click="setFilter('completed')" :class="{ selected: visibility == 'completed' }">Completed</Button></li>
-
-          <li><button @click="setFilter('all')" href="#/all" :class="{ selected: visibility == 'all' }">All</button></li>
+          <li><button @click="setFilter('all')" :class="{ selected: visibility == 'all' }">All</button></li>
           <li><button @click="setFilter('active')" :class="{ selected: visibility == 'active' }">Active</button></li>
           <li><button @click="setFilter('completed')" :class="{ selected: visibility == 'completed' }">Completed</button></li>
         </ul>
@@ -108,15 +107,15 @@
 
 <script>
 
-import Button from './components/inputs/Button/Button'
-import Checkbox from './components/inputs/Checkbox/Checkbox'
-import Textfield from './components/inputs/Textfield/Textfield'
-import Info from './components/content/Info/Info'
-import TodoCount from './components/content/TodoCount/TodoCount'
-import TodoItem from './components/content/TodoItem/TodoItem'
-import Title from './components/content/Title/Title'
-import List from './components/content/List/List'
-import Footer from './components/content/Footer/Footer'
+import Button from './components/Button/Button'
+import Checkbox from './components/Checkbox/Checkbox'
+import Textfield from './components/Textfield/Textfield'
+import Info from './components/Info/Info'
+import TodoCount from './components/TodoCount/TodoCount'
+import TodoItem from './components/TodoItem/TodoItem'
+import Title from './components/Title/Title'
+import List from './components/List/List'
+import Nav from './components/Nav/Nav'
 
 // localStorage persistence
 var STORAGE_KEY = 'todos-vuejs-2.0'
@@ -162,7 +161,7 @@ export default {
     TodoCount,
     TodoItem,
     Title,
-    Footer
+    Nav
   },
   data: function () {
     return {
@@ -278,18 +277,6 @@ body {
   padding: 0;
 }
 
-/* button {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  font-size: 100%;
-  vertical-align: baseline;
-  font-family: inherit;
-  font-weight: inherit;
-  color: inherit;
-} */
-
 body {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
   line-height: 1.4em;
@@ -316,6 +303,29 @@ body {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
               0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
+
+.header {
+  display: flex;
+  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+
+.main {
+  position: relative;
+  z-index: 2;
+  border-top: 1px solid #e6e6e6;
+}
+
+/* button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+} */
 
 /* .todoapp input::-webkit-input-placeholder {
   font-style: italic;
@@ -362,16 +372,12 @@ body {
   background: rgba(0, 0, 0, 0.003);
 } */
 
-
-.header {
-  display: flex;
-  box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
-}
-
 /* .toggle-all {
   display: flex;
   align-content: center;
   flex-basis: 40px;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .toggle-all:before {
@@ -386,12 +392,6 @@ body {
 /* .toggle-all:checked:before {
   color: #737373;
 } */
-
-.main {
-  position: relative;
-  z-index: 2;
-  border-top: 1px solid #e6e6e6;
-}
 
 /* .todo-list {
   margin: 0;
@@ -423,6 +423,7 @@ body {
 
 /* .todo-list li .toggle {
   text-align: center;
+  height: 40px;
   width: 40px;
   height: auto;
   position: absolute;
@@ -566,24 +567,6 @@ body {
   text-decoration: underline;
 } */
 
-/*
-  Hack to remove background from Mobile Safari.
-  Can't use it globally since it destroys checkboxes in Firefox
-*/
-@media screen and (-webkit-min-device-pixel-ratio:0) {
-  .toggle-all,
-  .todo-list li .toggle {
-    background: none;
-  }
 
-  /* .todo-list li .toggle {
-    height: 40px;
-  } */
-
-  .toggle-all {
-    -webkit-appearance: none;
-    appearance: none;
-  }
-}
 
 </style>

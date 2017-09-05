@@ -8,7 +8,7 @@
 
 <script>
 
-import Link from '../../inputs/Link/Link'
+import Link from '../Link/Link'
 export default {
   name: 'Info',
   components: {
