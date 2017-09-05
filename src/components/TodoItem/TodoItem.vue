@@ -11,14 +11,14 @@
       <!-- <input class="toggle" type="checkbox" v-model="todo.completed"> -->
       <Label
         :completed="todo.completed"
-        v-show="todo != editedTodo"
+        v-show="editedTodo == undefined || todo.id != editedTodo.id"
         @dblclick="$emit(`editTodo`, todo)"
       >
         {{ todo.title }}
       </Label>
-      <Textfield class="edit"
+      <TextField class="edit"
         type="edit"
-        v-show="todo == editedTodo"
+        v-show="editedTodo && todo.id == editedTodo.id"
         v-todo-focus="todo == editedTodo"
         :value="todo.title"
         @input="(value) => { todo.title = value }"
@@ -38,15 +38,15 @@
 </template>
 
 <script>
-import Button from '../Button/Button'
-import Label from '../Label/Label'
-import Textfield from '../Textfield/Textfield'
-import Checkbox from '../Checkbox/Checkbox'
+import Button from '../Button/Button.vue'
+import Label from '../Label/Label.vue'
+import TextField from '../TextField/TextField.vue'
+import Checkbox from '../Checkbox/Checkbox.vue'
 
 export default {
   name: 'TodoItem',
   props: ['todo', 'editedTodo'],
-  components: { Textfield, Checkbox, Button, Label },
+  components: { TextField, Checkbox, Button, Label },
   directives: {
     'todo-focus': function (el, binding) {
       if (binding.value) {

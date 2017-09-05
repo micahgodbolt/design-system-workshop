@@ -12,7 +12,7 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 -- --webpack-config ./build/webpack.dev.conf.js",
     "build-storybook": "build-storybook"
   },
   "dependencies": {

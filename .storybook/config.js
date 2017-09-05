@@ -1,7 +1,7 @@
 import { configure } from '@storybook/vue'
 
 function loadStories() {
-  require('../src/components')
+  require('../src/stories')
 }
 
 configure(loadStories, module)

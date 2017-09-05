@@ -9,7 +9,7 @@
           :value="allDone"
           @change="(value) => { allDone = value }"
         />
-        <Textfield
+        <TextField
           class="new-todo"
           type="new"
           placeholder="What needs to be done?"
@@ -109,7 +109,7 @@
 
 import Button from './components/Button/Button'
 import Checkbox from './components/Checkbox/Checkbox'
-import Textfield from './components/Textfield/Textfield'
+import TextField from './components/TextField/TextField'
 import Info from './components/Info/Info'
 import TodoCount from './components/TodoCount/TodoCount'
 import TodoItem from './components/TodoItem/TodoItem'
@@ -157,7 +157,7 @@ export default {
     Checkbox,
     Info,
     List,
-    Textfield,
+    TextField,
     TodoCount,
     TodoItem,
     Title,
