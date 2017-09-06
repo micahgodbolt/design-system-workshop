@@ -16,7 +16,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  text-align: right;
+  text-align: center;
   & > * {
     flex-basis: 0;
     flex-grow: 1;

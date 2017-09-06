@@ -116,6 +116,7 @@ import TodoItem from './components/TodoItem/TodoItem'
 import Title from './components/Title/Title'
 import List from './components/List/List'
 import Nav from './components/Nav/Nav'
+import './App.css'
 
 // localStorage persistence
 var STORAGE_KEY = 'todos-vuejs-2.0'
@@ -271,7 +272,7 @@ export default {
 </script>
 
 <style>
-html,
+/* html,
 body {
   margin: 0;
   padding: 0;
@@ -279,7 +280,7 @@ body {
 
 body {
   font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1.4em;
+  line-height: 1.4;
   background: #f5f5f5;
   color: #4d4d4d;
   min-width: 230px;
@@ -313,7 +314,7 @@ body {
   position: relative;
   z-index: 2;
   border-top: 1px solid #e6e6e6;
-}
+} */
 
 /* button {
   margin: 0;

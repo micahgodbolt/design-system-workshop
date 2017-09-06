@@ -12,6 +12,9 @@
 </script>
 
 <style lang="scss" scoped>
+  :focus {
+    outline: 0;
+  }
   .Button {
     margin: 0;
     padding: 0;

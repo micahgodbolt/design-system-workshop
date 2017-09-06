@@ -14,6 +14,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  :focus {
+    outline: 0;
+  }
   [data-type="toggleAll"] {
     display: flex;
     align-content: center;

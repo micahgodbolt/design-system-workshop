@@ -41,8 +41,8 @@ input::input-placeholder {
 }
 .root {
   position: relative;
-  flex-grow: 1;
   font-size: 24px;
+  width: 100%;
   font-family: inherit;
   font-weight: inherit;
   line-height: 1.4em;

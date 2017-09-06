@@ -1,5 +1,5 @@
 <template>
-  <h1 class="root">{{text}}</h1>
+  <h1 class="root">{{text}}<slot></slot></h1>
 </template>
 
 <script>

@@ -8,24 +8,26 @@
         :value="todo.completed"
         @change="(value) => { todo.completed = value }"
       />
-      <!-- <input class="toggle" type="checkbox" v-model="todo.completed"> -->
-      <Label
-        :completed="todo.completed"
-        v-show="editedTodo == undefined || todo.id != editedTodo.id"
-        @dblclick="$emit(`editTodo`, todo)"
-      >
-        {{ todo.title }}
-      </Label>
-      <TextField class="edit"
-        type="edit"
-        v-show="editedTodo && todo.id == editedTodo.id"
-        v-todo-focus="todo == editedTodo"
-        :value="todo.title"
-        @input="(value) => { todo.title = value }"
-        @blur="$emit(`doneEdit`, todo)"
-        @enter="$emit(`doneEdit`, todo)"
-        @esc="$emit(`cancelEdit`, todo)"
-      />
+      <div class="text">
+        <!-- <input class="toggle" type="checkbox" v-model="todo.completed"> -->
+        <Label
+          :completed="todo.completed"
+          v-show="editedTodo == undefined || todo.id != editedTodo.id"
+          @dblclick="$emit(`editTodo`, todo)"
+        >
+          {{ todo.title }}
+        </Label>
+        <TextField class="edit"
+          type="edit"
+          v-show="editedTodo && todo.id == editedTodo.id"
+          v-todo-focus="todo == editedTodo"
+          :value="todo.title"
+          @input="(value) => { todo.title = value }"
+          @blur="$emit(`doneEdit`, todo)"
+          @enter="$emit(`doneEdit`, todo)"
+          @esc="$emit(`cancelEdit`, todo)"
+        />
+      </div>
       <Button type="destroy" class="destroy" @click="$emit(`removeTodo`, todo)">×</Button>
     </div>
     <!-- <input class="edit" type="text"
@@ -60,13 +62,15 @@ export default {
 <style lang="scss" scoped>
   .TodoItem {
     position: relative;
-    font-size: 24px;
   }
   .view {
     padding: 10px 0;
     min-height: 38px;
     align-items: center;
     display: flex;
+  }
+  .text {
+    flex-grow: 1;
   }
   .toggle {
     margin-right: 18px;

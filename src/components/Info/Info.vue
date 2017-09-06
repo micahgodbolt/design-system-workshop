@@ -8,7 +8,7 @@
 
 <script>
 
-import Link from '../Link/Link'
+import Link from '../Link/Link.vue'
 export default {
   name: 'Info',
   components: {
