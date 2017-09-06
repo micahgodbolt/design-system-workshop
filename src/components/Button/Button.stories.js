@@ -6,13 +6,16 @@ import Button from './Button.vue'
 storiesOf('Button', module)
   .add('Filter', () => ({
     components: { Button },
-    template: `<Button @click="action('clicked')" type="filter">completed</Button>`
+    template: `<Button @click="action" type="filter">completed</Button>`,
+    methods: { action: action('clicked') }
   }))
   .add('Clear', () => ({
     components: { Button },
-    template: '<Button type="clear">clear</Button>'
+    template: '<Button  @click="action" type="clear">clear</Button>',
+    methods: { action: action('clicked') }
   }))
   .add('Destroy', () => ({
     components: { Button },
-    template: '<Button type="destroy">×</Button>'
+    template: '<Button  @click="action" type="destroy">×</Button>',
+    methods: { action: action('clicked') }
   }))
