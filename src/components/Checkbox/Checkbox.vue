@@ -3,7 +3,7 @@
     type="checkbox"
     :data-type="type"
     :checked="value"
-    v-on:change="$emit(`change`, $event.target.checked)"
+    @change="$emit(`change`, $event.target.checked)"
   >
 </template>
 
