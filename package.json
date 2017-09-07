@@ -11,6 +11,8 @@
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
+    "vtest": "backstop test",
+    "vtestApprove": "backstop approve",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "storybook": "start-storybook -p 6006 -- --webpack-config ./build/webpack.dev.conf.js",
     "build-storybook": "build-storybook"
@@ -30,6 +32,7 @@
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",
+    "backstopjs": "^3.0.24",
     "chai": "^3.5.0",
     "chalk": "^2.0.1",
     "chromedriver": "^2.27.2",
