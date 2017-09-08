@@ -11,10 +11,10 @@
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
-    "vtest": "backstop test",
-    "vtestApprove": "backstop approve",
+    "vtest": "backstop test --configPath=./backstop.config.js",
+    "vtestApprove": "backstop approve --configPath=./backstop.config.js",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
-    "storybook": "start-storybook -p 6006 -- --webpack-config ./build/webpack.dev.conf.js",
+    "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "dependencies": {

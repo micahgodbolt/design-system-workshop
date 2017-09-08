@@ -39,6 +39,9 @@ input::input-placeholder {
 	font-weight: 300;
 	color: #e6e6e6;
 }
+:focus {
+  outline: none;
+}
 .root {
   position: relative;
   font-size: 24px;
