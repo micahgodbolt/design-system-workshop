@@ -4,12 +4,34 @@ module.exports = {
       'label': 'Filter Button',
       'kind': 'Button',
       'story': 'Filter'
-      // 'selectors': [],
-      // 'hoverSelector': '.Button'
-      // 'clickSelector': '',
-      // 'postInteractionWait': '',
-      // 'misMatchThreshold': 0.1,
-      // 'requireSameDimensions': true
+    },
+    {
+      'label': 'Filter Button Hover',
+      'kind': 'Button',
+      'story': 'Filter',
+      'hoverSelector': '.Button'
+    },
+    {
+      'label': 'Clear Button',
+      'kind': 'Button',
+      'story': 'Clear'
+    },
+    {
+      'label': 'Clear Button Hover',
+      'kind': 'Button',
+      'story': 'Clear',
+      'hoverSelector': '.Button'
+    },
+    {
+      'label': 'Destroy Button',
+      'kind': 'Button',
+      'story': 'Destroy'
+    },
+    {
+      'label': 'Destroy Button Hover',
+      'kind': 'Button',
+      'story': 'Destroy',
+      'hoverSelector': '.Button'
     }
   ]
 }

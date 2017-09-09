@@ -31,7 +31,7 @@ vueFiles.forEach(function(file) {
       label = fileName + '_' + i,
       kind = '',
       story = '',
-      url = `http://localhost:6006/?selectedKind=${kind}&selectedStory=${story}&full=1`,
+      url = `http://localhost:6006/iframe.html?selectedKind=${kind}&selectedStory=${story}&dataId=0`,
       readyEvent,
       readySelector = '#root',
       delay = 500,
