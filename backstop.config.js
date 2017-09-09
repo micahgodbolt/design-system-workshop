@@ -15,50 +15,49 @@ const defaultHideSelectors = []
 const defaultRemoveSelectors = []
 // Just get look at these selectors
 const defaultSelectors = ['#root']
-let scenariosArray = []
-const vueFiles = glob.sync('src/components/**/*.backstop.js')
 
-// Loop through all *.html pages and push to scenariosArray
-vueFiles.forEach(function(file) {
-  let tests = require('./' + file)
-  let fileName = path.basename(file, '.backstop.js')
+let scenariosArray = []
+let runAllTests = true
+const testFiles = glob.sync('src/components/**/*.backstop.js')
+
+// Loop through all *.backstop.js pages and push to scenariosArray
+testFiles.forEach(function(file) {
+  const tests = require('./' + file)
+  const fileName = path.basename(file, '.backstop.js')
 
   tests.scenarios.forEach(function(scenario, i) {
-    let {
-      selectors = defaultSelectors,
-      hideSelectors = defaultHideSelectors,
-      removeSelectors = defaultRemoveSelectors,
-      label = fileName + '_' + i,
-      kind = '',
-      story = '',
-      url = `http://localhost:6006/iframe.html?selectedKind=${kind}&selectedStory=${story}&dataId=0`,
-      readyEvent,
-      readySelector = '#root',
-      delay = 500,
-      hoverSelector,
-      clickSelector,
-      postInteractionWait,
-      selectorExpansion = true,
-      misMatchThreshold = 0.1,
-      requireSameDimensions = true
-    } = scenario
 
-    scenariosArray.push({
-      label,
-      url,
-      hideSelectors,
-      removeSelectors,
-      selectors,
-      readyEvent,
-      readySelector,
-      delay,
-      hoverSelector,
-      clickSelector,
-      postInteractionWait,
-      selectorExpansion,
-      misMatchThreshold,
-      requireSameDimensions
-    })
+    const url = [
+      'http://localhost:6006/iframe.html?selectedKind=',
+      encodeURI(tests.kind || fileName),
+      '&selectedStory=',
+      encodeURI(scenario.story),
+      '&dataId=0'
+    ].join('');
+
+    let defaultProps = {
+      selectors: defaultSelectors,
+      hideSelectors: defaultHideSelectors,
+      removeSelectors: defaultRemoveSelectors,
+      label: fileName + '_' + i,
+      url: url,
+      readySelector: '#root',
+      delay: 500,
+    }
+
+    if (tests.only || scenario.only) {
+      // if this is first 'only', flip flag and wipe scenariosArray
+      if ( runAllTests == true ) {
+        runAllTests = false
+        scenariosArray = []
+      }
+      scenariosArray.push(Object.assign(defaultProps, scenario))
+    }
+
+    else if (runAllTests == true) {
+      scenariosArray.push(Object.assign(defaultProps, scenario))
+    }
+
   })
 })
 
