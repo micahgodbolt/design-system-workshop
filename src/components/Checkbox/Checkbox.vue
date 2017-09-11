@@ -1,5 +1,6 @@
 <template>
   <input
+    class="Checkbox"
     type="checkbox"
     :data-type="type"
     :checked="value"

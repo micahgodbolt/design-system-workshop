@@ -7,7 +7,7 @@ storiesOf('TodoItem', module)
     components: { TodoItem },
     template: `<TodoItem :todo="{completed:false, id:0, title:'abc'}"></TodoItem>`
   }))
-  .add('Display checked', () => ({
+  .add('Display Checked', () => ({
     components: { TodoItem },
     template: `<TodoItem :todo="{completed:true, id:0, title:'abc'}"></TodoItem>`
   }))
