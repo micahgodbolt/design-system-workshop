@@ -79,5 +79,5 @@ module.exports = {
   'engine': 'chrome',
   'report': ['browser'],
   'debug': false,
-  'debugWindow': true
+  'debugWindow': false
 }

@@ -1,6 +1,6 @@
 <template>
   <input
-    class="root"
+    class="TextField"
     :data-type="type"
     autofocus
     autocomplete="off"
@@ -42,7 +42,7 @@ input::input-placeholder {
 :focus {
   outline: none;
 }
-.root {
+.TextField {
   position: relative;
   font-size: 24px;
   width: 100%;
