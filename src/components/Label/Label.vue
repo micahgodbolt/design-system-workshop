@@ -9,7 +9,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '../../utilities/utilities';
   .Label {
+    color: $neutraldark;
     font-size: 24px;
     user-select: none;
     word-break: break-all;
@@ -18,7 +20,7 @@ export default {
     transition: color 0.4s;
   }
   [data-completed="true"] {
-    color: #d9d9d9;
+    color: $neutralLight;
     text-decoration: line-through;
   }
 </style>

@@ -21,23 +21,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+@import '../../utilities/utilities';
 input::-webkit-input-placeholder {
 	font-style: italic;
 	font-weight: 300;
-	color: #e6e6e6;
+	color: $neutralLighter;
 }
 
 input::-moz-placeholder {
 	font-style: italic;
 	font-weight: 300;
-	color: #e6e6e6;
+	color: $neutralLighter;
 }
 
 input::input-placeholder {
 	font-style: italic;
 	font-weight: 300;
-	color: #e6e6e6;
+	color: $neutralLighter;
 }
 :focus {
   outline: none;
@@ -54,10 +54,10 @@ input::input-placeholder {
 }
 [data-type='edit'] {
   outline-offset: 3px;
-  outline: 1px solid rgba(175, 47, 47, 0.2);
+  outline: 1px solid rgba($red, 0.2);
 }
 [data-type='new'] {
   padding: 16px 16px 16px 16px;
-  background: rgba(0, 0, 0, 0.003);
+  background: rgba($fg, 0.003);
 }
 </style>

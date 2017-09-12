@@ -9,6 +9,11 @@ storiesOf('Button', module)
     template: `<Button @click="action" type="filter">completed</Button>`,
     methods: { action: action('clicked') }
   }))
+  .add('Filter Active', () => ({
+    components: { Button },
+    template: `<Button class='selected' @click="action" type="filter">completed</Button>`,
+    methods: { action: action('clicked') }
+  }))
   .add('Clear', () => ({
     components: { Button },
     template: '<Button  @click="action" type="clear">clear</Button>',

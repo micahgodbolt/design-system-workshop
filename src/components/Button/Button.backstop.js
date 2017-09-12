@@ -10,6 +10,10 @@ module.exports = {
       'hoverSelector': '.Button'
     },
     {
+      'label': 'Filter Button Active',
+      'story': 'Filter Active'
+    },
+    {
       'label': 'Clear Button',
       'story': 'Clear'
     },

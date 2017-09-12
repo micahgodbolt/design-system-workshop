@@ -12,8 +12,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../utilities/utilities';
 .Link {
-  color: #bfbfbf;
+  color: $neutralLight;
   text-decoration: none;
   font-weight: 400;
   &:hover {

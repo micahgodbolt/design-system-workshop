@@ -11,6 +11,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '../../utilities/utilities';
 .footer {
   padding: 10px 15px;
   display: flex;

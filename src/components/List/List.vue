@@ -18,6 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '../../utilities/utilities';
   .list {
     margin: 0;
     padding: 0;
@@ -29,6 +30,6 @@ export default {
     }
   }
   [data-border="true"] {
-    border-bottom: 1px solid #ededed;
+    border-bottom: 1px solid $neutralLighter;
   }
 </style>

@@ -15,9 +15,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '../../utilities/utilities';
   .TodoCount {
-    color: #777;
+    color: $neutral;
     font-weight: 300;
   }
 </style>

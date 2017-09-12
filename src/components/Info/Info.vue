@@ -18,11 +18,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../utilities/utilities';
 .info {
   margin: 65px auto 0;
-  color: #bfbfbf;
+  color: $neutralLight;
   font-size: 10px;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: 0 1px 0 rgba($bg, 0.5);
   text-align: center;
 }
 

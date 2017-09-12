@@ -12,6 +12,7 @@
 </script>
 
 <style lang="scss" scoped>
+@import '../../utilities/utilities';
   :focus {
     outline: 0;
   }
@@ -26,36 +27,37 @@
     font-weight: inherit;
     color: inherit;
   }
-  [data-type='filter'] {
-    color: #777;
+  @include type('filter') {
+    color: $neutral;
     margin: 3px;
     padding: 3px 7px;
     text-decoration: none;
     border: 1px solid transparent;
     border-radius: 3px;
     &:hover {
-      border-color: rgba(175, 47, 47, 0.1);
+      border-color: rgba($red, 0.1);
     }
     &.selected {
-      border-color: rgba(175, 47, 47, 0.2);
+      border-color: rgba($red, 0.2);
     }
   }
-  [data-type='clear'] {
-    color: #777;
+  @include type('clear') {
+    color: $neutral;
     text-decoration: none;
     cursor: pointer;
     &:hover {
       text-decoration: underline;
     }
   }
-  [data-type='destroy'] {
+  @include type('destroy') {
     user-select: none;
     padding: 0 20px;
     font-size: 30px;
-    color: #cc9a9a;
+    color: $redLighter;
     transition: color 0.2s ease-out;
     &:hover {
-      color: #af5b5e;
+      color: $redLight;
     }
    }
+
 </style>
