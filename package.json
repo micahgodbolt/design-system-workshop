@@ -16,7 +16,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "sassdoc": "sassdoc ./src"
+    "sassdoc": "sassdoc ./src ./sassdoc"
   },
   "dependencies": {
     "vue": "^2.3.3",
