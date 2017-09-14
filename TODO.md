@@ -2,30 +2,35 @@
 
 Planning/Component ID'ing
 
-## Step 1
+## Step 1 Basic Components
 
-Basic Components
 h1 -> Title
-info -> Info
+todo-count -> TodoCount
+info -> Info (them)
+link -> Link (bonus)
+
+## Step 2 Complex Components (emiting)
+
+filter button -> Button
+input Textfield -> Textfield
+label (them)
+input checkbox -> Checkbox (bonus)
 
 
-## Step 2
+## Step 3 Iterators
+Review TODO Item
+List
 
-Complex Components
-v-model vs v-on: + :value
+## Step 4 Moving Styles
 
-## Step 3
 
-Moving Styles
 Using BEACSS naming convention
+Nav
 
-## Step 4
+## Step 5 Documentation
 
-Documenting components
-
-## Step 5
-
-Documenting Sass
+Storybook
+Sassdoc
 
 ## Step 6
 
