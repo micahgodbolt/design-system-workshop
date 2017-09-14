@@ -8,8 +8,7 @@
           :value="allDone"
           @change="(value) => { allDone = value }"
         />
-        <TextField
-          class="new-todo"
+        <Textfield
           type="new"
           placeholder="What needs to be done?"
           :value="newTodo"
@@ -25,7 +24,7 @@
           :data="filteredTodos"
         >
           <template slot="item" scope='props'>
-            <TodoItem class="todo"
+            <TodoItem
               :todo="props.item"
               :editedTodo="editedTodo"
               @removeTodo="removeTodo"
@@ -39,7 +38,6 @@
       <Nav v-show="todos.length" v-cloak>
         <TodoCount :remaining="remaining"/>
         <List
-          class="filters"
           direction="horizontal"
           :data="['all','active','completed']">
 
@@ -60,7 +58,7 @@
 
 import Button from './components/Button/Button'
 import Checkbox from './components/Checkbox/Checkbox'
-import TextField from './components/TextField/TextField'
+import Textfield from './components/Textfield/Textfield'
 import Info from './components/Info/Info'
 import TodoCount from './components/TodoCount/TodoCount'
 import TodoItem from './components/TodoItem/TodoItem'
@@ -76,7 +74,7 @@ export default {
     Checkbox,
     Info,
     List,
-    TextField,
+    Textfield,
     TodoCount,
     TodoItem,
     Title,

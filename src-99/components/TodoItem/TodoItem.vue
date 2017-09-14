@@ -17,7 +17,7 @@
         >
           {{ todo.title }}
         </Label>
-        <TextField class="edit"
+        <Textfield class="edit"
           type="edit"
           v-show="editedTodo && todo.id == editedTodo.id"
           v-todo-focus="todo == editedTodo"
@@ -28,27 +28,21 @@
           @esc="$emit(`cancelEdit`, todo)"
         />
       </div>
-      <Button type="destroy" class="destroy" @click="$emit(`removeTodo`, todo)">×</Button>
+      <Button type="destroy" @click="$emit(`removeTodo`, todo)">×</Button>
     </div>
-    <!-- <input class="edit" type="text"
-      v-model="todo.title"
-      v-todo-focus="todo == editedTodo"
-      @blur="doneEdit(todo)"
-      @keyup.enter="doneEdit(todo)"
-      @keyup.esc="cancelEdit(todo)"> -->
   </div>
 </template>
 
 <script>
 import Button from '../Button/Button.vue'
 import Label from '../Label/Label.vue'
-import TextField from '../TextField/TextField.vue'
+import Textfield from '../Textfield/Textfield.vue'
 import Checkbox from '../Checkbox/Checkbox.vue'
 
 export default {
   name: 'TodoItem',
   props: ['todo', 'editedTodo'],
-  components: { TextField, Checkbox, Button, Label },
+  components: { Textfield, Checkbox, Button, Label },
   directives: {
     'todo-focus': function (el, binding) {
       if (binding.value) {

@@ -1,6 +1,6 @@
 <template>
   <input
-    class="TextField"
+    class="Textfield"
     :data-type="type"
     autofocus
     autocomplete="off"
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'TextField',
+  name: 'Textfield',
   props: ['value', 'placeholder', 'type']
 }
 </script>
@@ -42,7 +42,7 @@ input::input-placeholder {
 :focus {
   outline: none;
 }
-.TextField {
+.Textfield {
   position: relative;
   font-size: 24px;
   width: 100%;
