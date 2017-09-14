@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>todos</h1>
+    <Title text="todos" />
     <section class="todoapp">
 
       <header class="header">
@@ -37,9 +37,7 @@
       </section>
 
       <footer class="footer" v-show="todos.length" v-cloak>
-        <span class="todo-count">
-          <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
-        </span>
+        <TodoCount :remaining="remaining" />
         <ul class="filters">
           <li><button @click="setFilter('all')" :class="{ selected: visibility == 'all' }">All</button></li>
           <li><button @click="setFilter('active')" :class="{ selected: visibility == 'active' }">Active</button></li>
@@ -51,52 +49,19 @@
       </footer>
     </section>
 
-    <footer class="info">
-      <p>Double-click to edit a todo</p>
-      <p>Written by <a href="http://evanyou.me">Evan You</a></p>
-      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-    </footer>
+    <Info></Info>
   </div>
 </template>
 
 <script>
 
-// localStorage persistence
-var STORAGE_KEY = 'todos-vuejs-2.0'
-var todoStorage = {
-  fetch: function () {
-    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-    todos.forEach(function (todo, index) {
-      todo.id = index
-    })
-    todoStorage.uid = todos.length
-    return todos
-  },
-  save: function (todos) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
-  }
-}
-
-// visibility filters
-var filters = {
-  all: function (todos) {
-    return todos
-  },
-  active: function (todos) {
-    return todos.filter(function (todo) {
-      return !todo.completed
-    })
-  },
-  completed: function (todos) {
-    return todos.filter(function (todo) {
-      return todo.completed
-    })
-  }
-}
+import Title from './components/Title/Title'
+import Info from './components/Info/Info'
+import TodoCount from './components/TodoCount/TodoCount'
 
 export default {
   name: 'app',
-  components: {},
+  components: { Title, Info, TodoCount },
   data: function () {
     return {
       todos: todoStorage.fetch(),
@@ -200,6 +165,39 @@ export default {
         el.focus()
       }
     }
+  }
+}
+
+// localStorage persistence
+var STORAGE_KEY = 'todos-vuejs-2.0'
+var todoStorage = {
+  fetch: function () {
+    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+    todos.forEach(function (todo, index) {
+      todo.id = index
+    })
+    todoStorage.uid = todos.length
+    return todos
+  },
+  save: function (todos) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
+  }
+}
+
+// visibility filters
+var filters = {
+  all: function (todos) {
+    return todos
+  },
+  active: function (todos) {
+    return todos.filter(function (todo) {
+      return !todo.completed
+    })
+  },
+  completed: function (todos) {
+    return todos.filter(function (todo) {
+      return todo.completed
+    })
   }
 }
 </script>
