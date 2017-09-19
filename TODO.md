@@ -40,21 +40,38 @@ input checkbox -> Checkbox (bonus)
 
 ## Step 3 Iterators
 Build List
-Review TODO Item
+Build TODO Item
   Most complex component yet
   Combines 4 components
 
+# Lunch
 
 ## Step 4 Moving Styles
+HTML props order
 
+<Component class/id/name
+  html props
+  controlled html props
+  custom data props
+  emits/functions
+/>
+
+scoped styles
 
 Using BEACSS naming convention
   move away from class based types to prop based types fed to data attributes
-Nav
+Nav??
 
 ## Step 5 Documentation
 
 Storybook
+Button (me)
+Textfield (me)
+
+Title (them)
+Checkbox (bonus)
+
+
 Sassdoc
 
 ## Step 6
