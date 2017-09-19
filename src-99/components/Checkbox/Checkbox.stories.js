@@ -6,11 +6,11 @@ import Checkbox from './Checkbox.vue'
 storiesOf('Checkbox', module)
   .add('Toggle All', () => ({
     components: { Checkbox },
-    template: '<Checkbox @change="action" type="toggleAll"></Checkbox>',
+    template: '<Checkbox @change="action" variant="toggleAll"></Checkbox>',
     methods: { action: action('change') }
   }))
   .add('Toggle Item', () => ({
     components: { Checkbox },
-    template: '<Checkbox @change="action" type="toggleItem"></Checkbox>',
+    template: '<Checkbox @change="action" variant="toggleItem"></Checkbox>',
     methods: { action: action('change') }
   }))

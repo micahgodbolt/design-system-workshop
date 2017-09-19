@@ -4,12 +4,12 @@
     <section class="todoapp">
       <header class="header">
         <Checkbox class="toggle-all"
-          type="toggleAll"
+          variant="toggleAll"
           :value="allDone"
           @change="(value) => { allDone = value }"
         />
         <Textfield
-          type="new"
+          variant="new"
           placeholder="What needs to be done?"
           :value="newTodo"
           @input="(value) => { newTodo = value }"
@@ -42,11 +42,11 @@
           :data="['all','active','completed']">
 
           <template slot="item" scope='props'>
-            <Button type="filter" @click="setFilter(props.item)" :class="{ selected: visibility == props.item }" >{{props.item}}</Button>
+            <Button variant="filter" @click="setFilter(props.item)" :class="{ selected: visibility == props.item }" >{{props.item}}</Button>
           </template>
         </List>
         <div>
-          <Button type="clear" @click="removeCompleted" v-show="todos.length > remaining">Clear completed</Button>
+          <Button variant="clear" @click="removeCompleted" v-show="todos.length > remaining">Clear completed</Button>
         </div>
       </Nav>
     </section>

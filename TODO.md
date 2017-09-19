@@ -39,9 +39,11 @@ input checkbox -> Checkbox (bonus)
 
 
 ## Step 3 Iterators
+Build List
 Review TODO Item
-  Added Textfield and Checkbox
-List
+  Most complex component yet
+  Combines 4 components
+
 
 ## Step 4 Moving Styles
 

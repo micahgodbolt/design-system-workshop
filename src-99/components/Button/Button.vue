@@ -1,5 +1,5 @@
 <template>
-    <button :data-type="type" class="Button" @click="$emit(`click`)">
+    <button :data-variant="variant" class="Button" @click="$emit(`click`)">
         <slot></slot>
     </button>
 </template>
@@ -7,7 +7,7 @@
 <script>
   export default {
     name: 'my-button',
-    props: ['type']
+    props: ['variant']
   }
 </script>
 

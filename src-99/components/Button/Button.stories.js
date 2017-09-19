@@ -17,21 +17,21 @@ storiesOf('Button', module)
   .addDecorator(withKnobs)
   .add('Filter', () => ({
     components: { Button },
-    template: `<Button @click="action" type="filter">${text('Text', 'completed')}</Button>`,
+    template: `<Button @click="action" variant="filter">${text('Text', 'completed')}</Button>`,
     methods: { action: action('clicked') }
   }))
   .add('Filter Active', () => ({
     components: { Button },
-    template: `<Button class='selected' @click="action" type="filter">completed</Button>`,
+    template: `<Button class='selected' @click="action" variant="filter">completed</Button>`,
     methods: { action: action('clicked') }
   }))
   .add('Clear', () => ({
     components: { Button },
-    template: '<Button  @click="action" type="clear">clear</Button>',
+    template: '<Button  @click="action" variant="clear">clear</Button>',
     methods: { action: action('clicked') }
   }))
   .add('Destroy', () => ({
     components: { Button },
-    template: '<Button  @click="action" type="destroy">×</Button>',
+    template: '<Button  @click="action" variant="destroy">×</Button>',
     methods: { action: action('clicked') }
   }))

@@ -2,7 +2,7 @@
   <input
     class="Checkbox"
     type="checkbox"
-    :data-type="type"
+    :data-variant="variant"
     :checked="value"
     @change="$emit(`change`, $event.target.checked)"
   >
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  props: ['value', 'type']
+  props: ['value', 'variant']
 }
 </script>
 
@@ -19,7 +19,7 @@ export default {
   :focus {
     outline: 0;
   }
-  [data-type="toggleAll"] {
+  [data-variant="toggleAll"] {
     display: flex;
     align-content: center;
     flex-basis: 40px;
@@ -37,7 +37,7 @@ export default {
       color: $neutral;
     }
   }
-  [data-type="toggleItem"] {
+  [data-variant="toggleItem"] {
     user-select: none;
     display: flex;
     align-items: center;

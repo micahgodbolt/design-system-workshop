@@ -1,7 +1,7 @@
 <template>
   <input
     class="Textfield"
-    :data-type="type"
+    :data-variant="variant"
     autofocus
     autocomplete="off"
     :value="value"
@@ -16,7 +16,7 @@
 <script>
 export default {
   name: 'Textfield',
-  props: ['value', 'placeholder', 'type']
+  props: ['value', 'placeholder', 'variant']
 }
 </script>
 
@@ -52,11 +52,11 @@ input::input-placeholder {
   border: none;
   color: inherit;
 }
-[data-type='edit'] {
+[data-variant='edit'] {
   outline-offset: 3px;
   outline: 1px solid rgba($red, 0.2);
 }
-[data-type='new'] {
+[data-variant='new'] {
   padding: 16px 16px 16px 16px;
   background: rgba($fg, 0.003);
 }

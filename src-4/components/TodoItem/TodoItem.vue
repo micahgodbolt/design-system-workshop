@@ -1,15 +1,11 @@
 <template>
-  <div class="TodoItem"
-    :class="{ completed: todo.completed, editing: todo == editedTodo }"
-    >
+  <div :class="{ completed: todo.completed, editing: todo == editedTodo }">
     <div class="view">
      <Checkbox class="toggle"
-        variant="toggleItem"
         :value="todo.completed"
         @change="(value) => { todo.completed = value }"
       />
       <div class="text">
-        <!-- <input class="toggle" variant="checkbox" v-model="todo.completed"> -->
         <Label
           :completed="todo.completed"
           v-show="editedTodo == undefined || todo.id != editedTodo.id"
@@ -18,7 +14,6 @@
           {{ todo.title }}
         </Label>
         <Textfield class="edit"
-          variant="edit"
           v-show="editedTodo && todo.id == editedTodo.id"
           v-todo-focus="todo == editedTodo"
           :value="todo.title"
@@ -28,7 +23,7 @@
           @esc="$emit(`cancelEdit`, todo)"
         />
       </div>
-      <Button variant="destroy" @click="$emit(`removeTodo`, todo)">×</Button>
+      <Button class="destroy" @click="$emit(`removeTodo`, todo)"></Button>
     </div>
   </div>
 </template>
@@ -53,21 +48,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-  .TodoItem {
-    position: relative;
-  }
-  .view {
-    padding: 10px 0;
-    min-height: 38px;
-    align-items: center;
-    display: flex;
-  }
-  .text {
-    flex-grow: 1;
-  }
-  .toggle {
-    margin-right: 18px;
-  }
+<style>
+
 </style>
 
