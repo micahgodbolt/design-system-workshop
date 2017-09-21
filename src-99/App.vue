@@ -3,7 +3,7 @@
     <Title text="todos" />
     <section class="todoapp">
       <header class="header">
-        <Checkbox class="toggle-all"
+        <Checkbox
           variant="toggleAll"
           :value="allDone"
           @change="(value) => { allDone = value }"
@@ -20,7 +20,6 @@
         <List
           direction="vertical"
           border="true"
-          class="todo-list"
           :data="filteredTodos"
         >
           <template slot="item" scope='props'>
@@ -35,12 +34,12 @@
           </template>
         </List>
       </section>
-      <Nav v-show="todos.length" v-cloak>
+      <Nav v-show="todos.length" >
         <TodoCount :remaining="remaining"/>
         <List
           direction="horizontal"
-          :data="['all','active','completed']">
-
+          :data="['all','active','completed']"
+        >
           <template slot="item" scope='props'>
             <Button variant="filter" @click="setFilter(props.item)" :class="{ selected: visibility == props.item }" >{{props.item}}</Button>
           </template>
@@ -61,10 +60,10 @@ import Checkbox from './components/Checkbox/Checkbox'
 import Textfield from './components/Textfield/Textfield'
 import Info from './components/Info/Info'
 import TodoCount from './components/TodoCount/TodoCount'
-import TodoItem from './components/TodoItem/TodoItem'
+const TodoItem = () => import('./components/TodoItem/TodoItem')
 import Title from './components/Title/Title'
 import List from './components/List/List'
-import Nav from './components/Nav/Nav'
+const Nav = () => import('./components/Nav/Nav')
 import './App.css'
 
 export default {

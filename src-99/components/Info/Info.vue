@@ -1,5 +1,5 @@
 <template>
-  <footer class="info">
+  <footer class="Info">
     <p>Double-click to edit a todo</p>
     <p>Written by <Link href='http://evanyou.me'>Evan You</Link></p>
     <p>Part of <Link href='http://todomvc.com'>TodoMVC</Link></p>
@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../utilities/utilities';
-.info {
+.Info {
   margin: 65px auto 0;
   color: $neutralLight;
   font-size: 10px;
@@ -27,7 +27,7 @@ export default {
   text-align: center;
 }
 
-.info p {
+.Info p {
   line-height: 1;
 }
 </style>

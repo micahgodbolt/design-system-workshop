@@ -1,5 +1,5 @@
 <template>
-<footer class="footer">
+<footer class="Nav">
   <slot></slot>
 </footer>
 </template>
@@ -12,7 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../utilities/utilities';
-.footer {
+.Nav {
   padding: 10px 15px;
   display: flex;
   align-items: center;

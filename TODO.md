@@ -44,6 +44,7 @@ Build TODO Item
   Most complex component yet
   Combines 4 components
 
+Code Splitting FTW
 # Lunch
 
 ## Step 4 Moving Styles

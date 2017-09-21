@@ -2,11 +2,11 @@ import { storiesOf } from '@storybook/vue'
 import { action } from '@storybook/addon-actions'
 import {
   withKnobs,
-  text
+  text,
   // number,
   // boolean,
   // array,
-  // select,
+  select
   // color,
   // date
 } from '@storybook/addon-knobs'
@@ -33,5 +33,16 @@ storiesOf('Button', module)
   .add('Destroy', () => ({
     components: { Button },
     template: '<Button  @click="action" variant="destroy">×</Button>',
+    methods: { action: action('clicked') }
+  }))
+  .add('Custom', () => ({
+    components: { Button },
+    template: `
+    <Button
+      @click="action"
+      variant="${select('Variant', {filter, clear, destroy}, 'filter')}"
+    >
+      ${text('Text', 'completed')}
+    </Button>`,
     methods: { action: action('clicked') }
   }))
