@@ -35,14 +35,3 @@ storiesOf('Button', module)
     template: '<Button  @click="action" variant="destroy">×</Button>',
     methods: { action: action('clicked') }
   }))
-  .add('Custom', () => ({
-    components: { Button },
-    template: `
-    <Button
-      @click="action"
-      variant="${select('Variant', {filter: 'filter', clear: 'clear', destroy: 'destroy'}, 'filter')}"
-    >
-      ${text('Text', 'completed')}
-    </Button>`,
-    methods: { action: action('clicked') }
-  }))

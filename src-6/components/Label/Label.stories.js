@@ -20,14 +20,3 @@ storiesOf('Label', module)
     template: '<Label @dblclick="action" completed="true" >I should do stuff</Label>',
     methods: { action: action('dblclick') }
   }))
-  .add('Custom', () => ({
-    components: { Label },
-    template: `
-      <Label
-        @dblclick="action"
-        completed="${boolean('completed', false)}"
-      >
-        ${text('Text', 'I should do stuff')}
-      </Label>`,
-    methods: { action: action('dblclick') }
-  }))

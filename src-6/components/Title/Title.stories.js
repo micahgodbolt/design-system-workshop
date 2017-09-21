@@ -12,8 +12,3 @@ storiesOf('Title', module)
     components: { Title },
     template: '<Title>title</Title>'
   }))
-  .add('Custom', () => ({
-    components: { Title },
-    template: `<Title>${text('title', 'todo')}</Title>`
-  }))
-
