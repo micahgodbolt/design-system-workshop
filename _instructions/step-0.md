@@ -8,6 +8,7 @@
 
 - Install Vetur
 - Install ES Lint
+- Vue Chrome Dev tools
 
 ## Vue Resources
 

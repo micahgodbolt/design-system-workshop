@@ -48,8 +48,11 @@ export default {
 ## Create TodoCount
 
 1. What are filters?
+2. Controlled props and v-bind: vs :
+3. Event handlers v-on: vs @
 
 ## Homework!
 
 1. Create an Info component to replace the `<footer class="info">`
 2. Bonus! Create a Link component and import that into the Info component
+  - Hint: You'll need to v-bind or ':' the `href`
