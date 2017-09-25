@@ -1,13 +1,19 @@
 <template>
-  <h1>{{text}}</h1>
+  <h1 class="Title">{{text}}<slot></slot></h1>
 </template>
 
 <script>
 export default {
-  name: 'Title',
   props: ['text']
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '../../utilities/utilities';
+.Title {
+	font-size: 100px;
+	font-weight: 100;
+	text-align: center;
+	color: rgba($red, 0.15);
+}
 </style>

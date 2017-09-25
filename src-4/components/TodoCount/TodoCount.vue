@@ -1,12 +1,11 @@
 <template>
-  <span class="todo-count">
+  <span class="TodoCount">
     <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
   </span>
 </template>
 
 <script>
 export default {
-  name: 'TodoCount',
   props: ['remaining'],
   filters: {
     pluralize: function (n) {
@@ -16,5 +15,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '../../utilities/utilities';
+.TodoCount {
+  color: $neutral;
+  font-weight: 300;
+}
 </style>

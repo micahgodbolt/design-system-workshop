@@ -1,0 +1,4 @@
+@function lighter($color, $steps) {
+  $amount: $steps * 10;
+  @return lighten($color, $amount);
+}

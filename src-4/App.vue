@@ -208,7 +208,7 @@ var filters = {
 </script>
 
 <style>
-html,
+/* html,
 body {
   margin: 0;
   padding: 0;
@@ -252,6 +252,8 @@ body {
   border-top: 1px solid #e6e6e6;
 }
 
+*/
+
 button {
   margin: 0;
   padding: 0;
@@ -282,6 +284,7 @@ button {
   color: #e6e6e6;
 }
 
+/*
 h1 {
   font-size: 100px;
   font-weight: 100;
@@ -308,6 +311,7 @@ h1 {
   border: none;
   background: rgba(0, 0, 0, 0.003);
 }
+*/
 
 .toggle-all {
   display: flex;
@@ -330,6 +334,7 @@ h1 {
   color: #737373;
 }
 
+/*
 .todo-list {
   margin: 0;
   padding: 0;
@@ -357,6 +362,8 @@ h1 {
 .todo-list .editing .view {
   display: none;
 }
+*/
+
 
 .todo-list li .toggle {
   text-align: center;
@@ -378,6 +385,7 @@ h1 {
 .todo-list li .toggle:checked:after {
   content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
 }
+
 
 .todo-list li label {
   word-break: break-all;
@@ -420,6 +428,7 @@ h1 {
   display: block;
 }
 
+/*
 .todo-list li .edit {
   display: none;
 }
@@ -454,6 +463,7 @@ h1 {
   display: flex;
   flex-grow: 1;
 }
+*/
 
 .filters li button {
   color: inherit;
@@ -481,6 +491,7 @@ h1 {
   text-decoration: underline;
 }
 
+/*
 .info {
   margin: 65px auto 0;
   color: #bfbfbf;
@@ -501,6 +512,6 @@ h1 {
 
 .info a:hover {
   text-decoration: underline;
-}
+} */
 
 </style>

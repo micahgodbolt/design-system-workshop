@@ -1,4 +1,4 @@
-# Step 1: Complex Components
+# Step 2: Complex Components
 
 ## Convert filter buttons to Button
 

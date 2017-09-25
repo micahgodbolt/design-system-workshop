@@ -44,7 +44,6 @@ Build TODO Item
   Most complex component yet
   Combines 4 components
 
-Code Splitting FTW
 # Lunch
 
 ## Step 4 Moving Styles
@@ -61,9 +60,14 @@ scoped styles
 
 Using BEACSS naming convention
   move away from class based types to prop based types fed to data attributes
-Nav??
+
+Checkbox (ME)
+Button (me)
+Label(them)
+Textfield(them)
 
 ## Step 5 Documentation
+(I converted colors to variables etc)
 
 Storybook
 Button (me)
