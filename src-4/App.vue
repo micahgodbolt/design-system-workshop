@@ -35,17 +35,21 @@
         </List>
       </section>
 
-      <footer class="footer" v-show="todos.length" v-cloak>
-        <TodoCount :remaining="remaining" />
-        <ul class="filters">
-          <li><Button @click="setFilter('all')" :class="{ selected: visibility == 'all' }">All</Button></li>
-          <li><Button @click="setFilter('active')" :class="{ selected: visibility == 'active' }">Active</Button></li>
-          <li><Button @click="setFilter('completed')" :class="{ selected: visibility == 'completed' }">Completed</Button></li>
-        </ul>
-        <Button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
-          Clear completed
-        </Button>
-      </footer>
+      <Nav v-show="todos.length" v-cloak>
+        <TodoCount :remaining="remaining"/>
+        <List
+          class="filters"
+          direction="horizontal"
+          :data="['all','active','completed']"
+          >
+          <template slot="item" scope='props'>
+            <Button class="filter" @click="setFilter(props.item)" :class="{ selected: visibility == props.item }" >{{props.item}}</Button>
+          </template>
+        </List>
+        <div>
+          <Button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">Clear completed</Button>
+        </div>
+      </Nav>
     </section>
 
     <Info></Info>
@@ -62,11 +66,13 @@ import Button from './components/Button/Button'
 import Label from './components/Label/Label'
 import Checkbox from './components/Checkbox/Checkbox'
 import List from './components/List/List'
+import Nav from './components/Nav/Nav'
 import TodoItem from './components/TodoItem/TodoItem'
+import './App.css'
 
 export default {
   name: 'app',
-  components: { Title, Info, TodoCount, Button, Textfield, Label, Checkbox, List, TodoItem },
+  components: { Title, Info, TodoCount, Button, Textfield, Label, Checkbox, List, TodoItem, Nav },
   data: function () {
     return {
       todos: todoStorage.fetch(),
@@ -291,6 +297,7 @@ h1 {
   text-align: center;
   color: rgba(175, 47, 47, 0.15);
 }
+*/
 
 .new-todo,
 .edit {
@@ -311,7 +318,7 @@ h1 {
   border: none;
   background: rgba(0, 0, 0, 0.003);
 }
-*/
+
 
 .toggle-all {
   display: flex;

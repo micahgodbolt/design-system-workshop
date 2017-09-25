@@ -27,7 +27,7 @@
           @esc="$emit(`cancelEdit`, todo)"
         />
       </div>
-      <Button variant="destroy" @click="$emit(`removeTodo`, todo)">×</Button>
+      <Button class="destroy" @click="$emit(`removeTodo`, todo)"></Button>
     </div>
   </div>
 </template>
