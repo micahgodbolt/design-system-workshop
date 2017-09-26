@@ -117,10 +117,6 @@ Explain what has already been done.
 }
 ```
 
-TODO
-(remove variant and commit, remove label padding)
-change destroy button to X in button
-
 ## Homework!
 
 1. Convert Label

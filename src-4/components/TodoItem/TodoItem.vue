@@ -5,7 +5,6 @@
     <div class="view">
       <Checkbox class="toggle"
         :value="todo.completed"
-        variant="toggleItem"
         @change="(value) => { todo.completed = value }"
       />
       <div class="text">
@@ -27,7 +26,7 @@
           @esc="$emit(`cancelEdit`, todo)"
         />
       </div>
-      <Button class="destroy" @click="$emit(`removeTodo`, todo)"></Button>
+      <Button class="destroy" @click="$emit(`removeTodo`, todo)">×</Button>
     </div>
   </div>
 </template>

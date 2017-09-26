@@ -314,7 +314,7 @@ h1 {
 }
 
 .new-todo {
-  padding: 16px 16px 16px 60px;
+  padding: 16px 16px 16px 16px;
   border: none;
   background: rgba(0, 0, 0, 0.003);
 }
@@ -396,7 +396,7 @@ h1 {
 
 .todo-list li label {
   word-break: break-all;
-  padding: 15px 60px 15px 15px;
+  padding: 15px 15px 15px 15px;
   margin-left: 45px;
   display: block;
   line-height: 1.2;
@@ -425,10 +425,6 @@ h1 {
 
 .todo-list li .destroy:hover {
   color: #af5b5e;
-}
-
-.todo-list li .destroy:after {
-  content: '×';
 }
 
 .todo-list li:hover .destroy {
