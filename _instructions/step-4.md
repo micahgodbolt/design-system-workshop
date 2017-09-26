@@ -68,6 +68,54 @@ Explain what has already been done.
 3. Update Button scss
 4. Update TodoItem, Nav(App.vue), add variant, remove class
 
+```scss
+:focus {
+  outline: 0;
+}
+.Button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font-size: 100%;
+  vertical-align: baseline;
+  font-family: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+[data-variant="filter"] {
+  color: #777;
+  margin: 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  &:hover {
+    border-color: rgba(#af2f2f, 0.1);
+  }
+  &.selected {
+    border-color: rgba(#af2f2f, 0.2);
+  }
+}
+[data-variant="clear"] {
+  color: #777;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+[data-variant="destroy"] {
+  user-select: none;
+  padding: 0 20px;
+  font-size: 30px;
+  color: #cc9a9a;
+  transition: color 0.2s ease-out;
+  &:hover {
+    color: #af5b5e;
+  }
+}
+```
 
 TODO
 (remove variant and commit, remove label padding)
