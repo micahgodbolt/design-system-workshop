@@ -19,7 +19,7 @@ Explain what has already been done.
 4. Variants
 
 ## Convert Checkbox
-1. Comment out old css
+1. Comment out old css (375 and 323)
 2. Update Checkbox props with variant
 3. Update Checkbox scss
 4. Update App.vue, and TodoItem, add variant, remove class
@@ -63,11 +63,15 @@ Explain what has already been done.
 ```
 
 ## Convert Button
-1. Comment out old css
-2. Update Button props with variant
+1. Comment out old css (264, 412, 476)
+2. Update Button props with variant, and :data-variant="variant"
 3. Update Button scss
 4. Update TodoItem, Nav(App.vue), add variant, remove class
 
+
+TODO
+(remove variant and commit, remove label padding)
+change destroy button to X in button
 
 ## Homework!
 
