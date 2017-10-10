@@ -1,5 +1,17 @@
 # Planning and a quick Vue primer
 
+## How We Got Here
+
+```bash
+  $ npm install -g vue-cli
+  $ vue init pwa design-system-workshop
+  $ cd ./design-system-workshop
+  $ npm install
+  $ npm start
+```
+
+[Vue Todo MVC](https://vuejs.org/v2/examples/todomvc.html)
+
 ## Computer setup
 
 - Current version of Node/NPM
