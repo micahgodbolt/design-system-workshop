@@ -60,3 +60,6 @@ export default {
 1. Create an Info component to replace the `<footer class="info">`
 2. Bonus! Create a Link component and import that into the Info component
   - Hint: You'll need to v-bind or ':' the `href`
+
+---
+[Next step](./step-2.md)
