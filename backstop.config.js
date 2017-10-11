@@ -9,10 +9,6 @@ const viewports = [
   }
 ]
 
-// Hide any selectors you don't need
-const defaultHideSelectors = []
-// Take out any selectors
-const defaultRemoveSelectors = []
 // Just get look at these selectors
 const defaultSelectors = ['#root']
 
@@ -26,38 +22,32 @@ testFiles.forEach(function(file) {
   const fileName = path.basename(file, '.backstop.js')
 
   tests.scenarios.forEach(function(scenario, i) {
-
     const url = [
       'http://localhost:6006/iframe.html?selectedKind=',
       encodeURI(tests.kind || fileName),
       '&selectedStory=',
       encodeURI(scenario.story),
       '&dataId=0'
-    ].join('');
+    ].join('')
 
     let defaultProps = {
       selectors: defaultSelectors,
-      hideSelectors: defaultHideSelectors,
-      removeSelectors: defaultRemoveSelectors,
       label: fileName + '_' + i,
       url: url,
       readySelector: '#root',
-      delay: 500,
+      delay: 500
     }
 
     if (tests.only || scenario.only) {
       // if this is first 'only', flip flag and wipe scenariosArray
-      if ( runAllTests == true ) {
+      if (runAllTests === true) {
         runAllTests = false
         scenariosArray = []
       }
       scenariosArray.push(Object.assign(defaultProps, scenario))
-    }
-
-    else if (runAllTests == true) {
+    } else if (runAllTests === true) {
       scenariosArray.push(Object.assign(defaultProps, scenario))
     }
-
   })
 })
 

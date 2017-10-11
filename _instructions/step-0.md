@@ -1,17 +1,5 @@
 # Planning and a quick Vue primer
 
-## How We Got Here
-
-```bash
-  $ npm install -g vue-cli
-  $ vue init pwa design-system-workshop
-  $ cd ./design-system-workshop
-  $ npm install
-  $ npm start
-```
-
-[Vue Todo MVC](https://vuejs.org/v2/examples/todomvc.html)
-
 ## Computer setup
 
 - Current version of Node/NPM
@@ -27,10 +15,15 @@
 [Vue Website](https://vuejs.org/)
 [CSS Tricks Vue Tutorial](https://css-tricks.com/guides/vue/)
 
-## The Project
+## How We Got Here
 
-Convert Todo application from a single file application to a fully featured design system.
+```bash
+  $ npm install -g vue-cli
+  $ vue init pwa design-system-workshop
+  $ cd ./design-system-workshop
+  $ npm install
+  $ npm start
+```
 
-### How this TODO application was created
+[Vue Todo MVC](https://vuejs.org/v2/examples/todomvc.html)
 
-`npm install -g vue-cli && vue init pwa design-system-workshop`

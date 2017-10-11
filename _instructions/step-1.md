@@ -1,5 +1,9 @@
 # Step 1: Basic Components
 
+## Identifying Components
+
+Let's create a list of the components we are going to want to create.
+
 ## What is a SFC?
 
 A single file component is a Vue component, combined into a single file. It combines the component template, styles as well as scripts. It uses a .vue extension.
