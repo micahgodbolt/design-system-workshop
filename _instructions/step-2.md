@@ -28,4 +28,5 @@
   - Hint: `:checked="value"` is needed to bind the passed in value to the checked property
   - Hint2: `@change="$emit(`change`, $event.target.checked)"` - this emit will pass the value of the checkbox up to the component, and can then used like `@change="(value) => { allDone = value }"`
 
-[Next step](./_instructions/step-3.md)
+---
+[Next step](./step-3.md)

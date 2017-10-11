@@ -61,4 +61,5 @@ export default {
 2. Bonus! Create a Link component and import that into the Info component
   - Hint: You'll need to v-bind or ':' the `href`
 
-[Next step](./_instructions/step-2.md)
+---
+[Next step](./step-2.md)

@@ -65,4 +65,5 @@ storiesOf('Button', module)
 ///   // #666666
 ```
 
-[Next step](./_instructions/step-6.md)
+---
+[Next step](./step-6.md)
