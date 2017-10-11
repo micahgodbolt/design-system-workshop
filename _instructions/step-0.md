@@ -33,4 +33,5 @@
 [Vue Website](https://vuejs.org/)
 [CSS Tricks Vue Tutorial](https://css-tricks.com/guides/vue/)
 
-[Next step](./_instructions/step-1.md)
+---
+[Next step](./step-1.md)
