@@ -64,3 +64,5 @@ storiesOf('Button', module)
 ///   lighter(#333, 2)
 ///   // #666666
 ```
+
+[Next step](./_instructions/step-6.md)

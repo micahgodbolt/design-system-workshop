@@ -56,3 +56,5 @@ module.exports = {
 
 1. Title tests
 2. TodoItem tests
+
+[Next step](./_instructions/step-7.md)

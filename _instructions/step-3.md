@@ -15,3 +15,5 @@ Looping through content is at the heart of the web. Blogs, comments, products, r
 1. Composite components vs atomic components
 2. Knowledge of application needs. Self aware
 3. Passing Textfield and button emits up
+
+[Next step](./_instructions/step-4.md)
