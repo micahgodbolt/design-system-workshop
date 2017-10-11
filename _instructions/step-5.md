@@ -31,7 +31,7 @@ storiesOf('Button', module)
 
 ## [Sassdoc](http://sassdoc.com/)
 
-`npm run Sassdoc`
+`npm run sassdoc`
 
 ```
 @author
